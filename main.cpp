@@ -7,18 +7,21 @@
 using namespace std;
 
 int main() {
-    string fileName;
-    ifstream f;
+    string dictionary_file_name;
+    ifstream dictionary;
     string line;
 
+    //INTERFACE
+    cout << "EXTRACTION OF WORD LIST FROM DICTIONARY" << endl <<"======================================="<< endl;
+
     // Read the file name //
-    cout << "File name ? ";
-    cin >> fileName;
+    cout << "Dictionary file ? ";
+    cin >> dictionary_file_name;
 
     // Open the file; exit program if the file couldn't be opened
-    f.open(fileName);
-    if (!f.is_open())
-        { cerr << "File " << fileName << " not found !\n";
+    dictionary.open(dictionary_file_name);
+    if (!dictionary.is_open())
+        { cerr << "File " << dictionary_file_name << " not found !\n";
         return(1); }
 
 
