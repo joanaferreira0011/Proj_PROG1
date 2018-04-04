@@ -50,5 +50,4 @@ int main() {
 
     cout << "Extracting simple words from file" << dictionary_file_name<< endl<< "," << "begining with letter...";
 
-
-    return 0;}
+	return 0;}
