@@ -24,5 +24,4 @@ int main() {
         { cerr << "File " << dictionary_file_name << " not found !\n";
         return(1); }
 
-
-    return 0;}
+	return 0;}
