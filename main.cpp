@@ -8,7 +8,7 @@
 
 using namespace std;
 
-// --- Algorithm that orders the vector --- 
+// --- Algorithm that orders the vector --- //
 void sort(vector<string> &v1) 
 {
 	// Sort elements in their range (start to finish)
@@ -16,7 +16,7 @@ void sort(vector<string> &v1)
 }
 
 
-// --- Algorithm that removes duplicate words ---
+// --- Algorithm that removes duplicate words --- //
 void remove_duplicates(vector<string> &v1)
 {
 	// Considering that the vector is already in order
@@ -66,4 +66,25 @@ int main() {
 
     cout << "Extracting simple words from file" << dictionary_file_name<< endl<< "," << "begining with letter...";
 
+	
+	/* 
+	cout << "Number of simple words" << " = " << word_list_v.size << endl;
+	cout << "Sorting words " << "..." << endl;
+	
+	// Sort vector
+	sort(word_list_v); 
+
+	cout << "Removing duplicate words " << "..." << endl;
+
+	// Delete repeated vector words
+	remove_duplicates(word_list_v);
+
+	cout << "Number of non-duplicate simple words" << " = " << word_list_v.size << endl;
+
+	cout << "Saving words into file " << dictionary_file_name << " ..." << endl;
+
+		// chamar funcao que faz istoo ...... (APAGAR)
+
+	cout << "End of processing." << endl;
+	*/
 	return 0;}
