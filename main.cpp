@@ -3,11 +3,21 @@
 #include <string>
 #include <vector>
 #include <iomanip>
+#include <algorithm>
 
 using namespace std;
 
+// --- Algorithm that orders the vector --- 
+void sort(vector<string> v1) 
+{
+	sort(v1.begin(), v1.end());  // Sort elements in their range (start to finish)
+}
+
+
 int main() {
-    string dictionary_file_name;
+    
+	sort(v1);
+	string dictionary_file_name;
     ifstream dictionary;
     string line;
 
