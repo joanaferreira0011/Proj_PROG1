@@ -9,12 +9,20 @@
 using namespace std;
 
 // --- Algorithm that orders the vector --- 
-void sort(vector<string> v1) 
+void sort(vector<string> &v1) 
 {
 	// Sort elements in their range (start to finish)
 	sort(v1.begin(), v1.end());  
 }
 
+
+// --- Algorithm that removes duplicate words ---
+void remove_duplicates(vector<string> &v1)
+{
+	// Considering that the vector is already in order
+	v1.erase(unique(v1.begin(), v1.end()), v1.end()); // Remove duplicate words in their range (start to finish)
+	
+}
 
 void extract(string dictionary_file_name, vector<string> &word_list_v)
     {
