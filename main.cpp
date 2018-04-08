@@ -24,6 +24,10 @@ void remove_duplicates(vector<string> &v1)
 	
 }
 
+vector vector_line(string line)  //returns a vector with words from line
+{}
+
+//extract from dictionary
 void extract(string dictionary_file_name, vector<string> &word_list_v)
     {
     string line;
@@ -35,10 +39,11 @@ void extract(string dictionary_file_name, vector<string> &word_list_v)
     if (!dictionary.is_open())
         { cerr << "File " << "dictionary" << " not found !\n"; }
 
-    while (getline(dictionary, line))
-    {if (! (any_of( begin( line ), end( line ), []( char c ) { return ( islower( c ) ); } ) )) //check if uppercase
-        {word_list_v.push_back(line);
-        number_of_words++;}}
+        while (!dictionary.eof())
+        {   getline(dictionary, line);
+            vector_line(line);
+        }
+
 
 
     cout<< number_of_words;}
