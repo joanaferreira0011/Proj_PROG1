@@ -87,7 +87,6 @@ int main()
 	ifstream arq("procdic");
 
 
-
 	cout << "Choose one of the following options: " << endl; // Shows on the screen the available options
 	cout << "Option 1: Verify that the word belongs to the word list " << endl;
 	cout << "Option 2: Guess a randomly chosen word from the list " << endl;
