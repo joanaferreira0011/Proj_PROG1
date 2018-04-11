@@ -24,14 +24,48 @@ void remove_duplicates(vector<string> &v1)
 	
 }
 
-vector vector_line(string line)  //returns a vector with words from line
-{}
+//separate words:
+// receives lines with ';' from vector_line
+void separate_words(string line, vector<string> &words)
+{
+    int i=0;
+    int first=0;
+    while (i<line.length())
+        {if (line.at(i)== ';' || line.at(i)== ' ')
+            {words.push_back(line.substr(first, i-first+1));
+            first= i+2;
+            i=i+2;}
+        else
+                i++;}
+}
+
+void vector_line(string line, vector<string> &words)  //returns a vector with words from line
+{   int i=0;
+    vector<int> index;  //vector that stores index of capital letters in the string
+    if (!line.empty())
+    /// make index vector ///
+    {while (i< line.length())
+            if (!(isupper(line.at(i)) || line.at(i)== ';' || line.at(i)== ' '))
+               break;
+            else if (line.find(';')== string::npos)
+                words.push_back(line);
+            else
+                separate_words(line, words);
+
+
+    }
+
+    /// check for words in the index vector ///
+
+
+}
+
 
 //extract from dictionary
 void extract(string dictionary_file_name, vector<string> &word_list_v)
     {
     string line;
-    int number_of_words=0;
+    int number_of_words= word_list_v.size();
     ifstream dictionary(dictionary_file_name);
 
     // Open the file; exit program if the file couldn't be opened
@@ -41,11 +75,8 @@ void extract(string dictionary_file_name, vector<string> &word_list_v)
 
         while (!dictionary.eof())
         {   getline(dictionary, line);
-            vector_line(line);
+            vector_line(line, word_list_v);
         }
-
-
-
     cout<< number_of_words;}
 
 
