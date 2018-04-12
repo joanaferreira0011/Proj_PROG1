@@ -10,6 +10,28 @@
 
 using namespace std;
 
+
+
+vector<string> getwords(string file_name)  //input a file name, opens file a returns a vector with words from file
+{
+string line;
+ifstream dictionary(file_name);
+vector<string> words;
+
+// Open the file; exit program if the file couldn't be opened
+// dictionary.open(dictionary_file_name);
+if (!dictionary.is_open())
+{ cerr << "File " << "dictionary" << " not found !\n"; }
+
+while (!dictionary.eof())
+{   getline(dictionary, line);
+ words.push_back(line);
+}
+
+return words;}
+
+
+
 void uppercase_letters(string &word)
 {
 	// Will make the entire string in uppercase
