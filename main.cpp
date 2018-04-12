@@ -99,19 +99,29 @@ void extract(string dictionary_file_name, vector<string> &word_list_v)
     if (!dictionary.is_open())
         { cerr << "File " << "dictionary" << " not found !\n"; }
 
-        while (!dictionary.eof())
+    while (!dictionary.eof())
         {   getline(dictionary, line);
             vector_line(line, word_list_v);
         }
 
-    //cout<< word_list_v[0];
+    dictionary.close();
     }
 
+void write_to_file(string word_list_file_name, vector<string> vector, int max )
+{
+	ofstream file(word_list_file_name);
+	int i= 1;
+	
+	while(i< max)
+	{file<<vector[i]<< endl;
+	i++;}
+	
+	file.close();
 
+}
 int main() {
     string dictionary_file_name;
     string word_list_file_name;
-    ifstream word_list;
     string line;
     vector<string> word_list_v;
 
@@ -121,14 +131,14 @@ int main() {
     // Read the file name //
     cout << "Dictionary file ? ";
     cin >> dictionary_file_name;
-
+	cout << "Word list file ? ";
+	cin >> word_list_file_name;
 
     extract(dictionary_file_name,word_list_v);
     //int number_of_words= word_list_v.size();
     //cout<< number_of_words;
     // Read the word_list file name //
-    //cout << "Word list file ? ";
-   // cin >> word_list_file_name;
+
 
 
     cout << "Extracting simple words from file" << dictionary_file_name << endl << "," << "begining with letter...";
@@ -147,14 +157,10 @@ int main() {
 
 	cout << "Number of non-duplicate simple words" << " = " << word_list_v.size() << endl;
 
-	cout << "Saving words into file " << dictionary_file_name << " ..." << endl;
-
-		// chamar funcao que faz istoo ...... (APAGAR)
+	cout << "Saving words into file " << word_list_file_name << " ..." << endl;
+	write_to_file(word_list_file_name, word_list_v, word_list_v.size() );
+	
 
 	cout << "End of processing." << endl;
-    int i= 0;
-	while(i<word_list_v.size())
-    {cout << word_list_v[i] << endl;
-	    i++;
-    }
+ 
 	return 0;}
