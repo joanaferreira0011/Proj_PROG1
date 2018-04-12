@@ -21,7 +21,6 @@ void remove_duplicates(vector<string> &v1)
 {
 	// Considering that the vector is already in order
 	v1.erase(unique(v1.begin(), v1.end()), v1.end()); // Remove duplicate words in their range (start to finish)
-	
 }
 
 //separate words:
@@ -31,12 +30,16 @@ void separate_words(string line, vector<string> &word_list_v)
     int i=0;
     int first=0;
     while (i<line.length())
+    {if (i==(line.length()-1))
+        {word_list_v.push_back(line.substr(first, i-first+1));
+        i++;}
+        else
         {if (line.at(i)== ';' || line.at(i)== ' ')
-            {word_list_v.push_back(line.substr(first, i-first+1));
+            {word_list_v.push_back(line.substr(first, i-first));
             first= i+2;
             i=i+2;}
         else
-                i++;}
+                i++;}}
 }
 
 
@@ -44,7 +47,7 @@ bool has_headlines (string line)  //check if the line has headlines, called by v
 {int i=0;
     if (!line.empty())
        {while (i< line.length())
-            { if (isupper(line.at(i)) || line.at(i)== ';' || line.at(i)== ' ' || line.at(i)=='\'')
+            { if (isupper(line.at(i)) || line.at(i)== ';' || line.at(i)== ' ')
                     i++;
                 else break; }}
     else
@@ -54,14 +57,32 @@ bool has_headlines (string line)  //check if the line has headlines, called by v
         return true;
 }
 
+bool check_if_up_space(string line) //check if all ar uppercase or space
+{
+    int i=0;
+    while (i< line.length())
+     {if (isupper(line.at(i)) || line.at(i)== ' ' )
+        i++;
+        else
+            break;}
+
+    if (i==line.length())
+        return true;
+    else return false;
+
+}
+
 
 void vector_line(string line, vector<string> &word_list_v)  //returns a vector with words from line
-{
-    if(has_headlines(line))
-         {if (line.find(';')== string::npos)
-                 word_list_v.push_back(line);
-            else
-                separate_words(line, word_list_v);}
+{   if (has_headlines(line) && (line.find(' ') == string::npos))
+        word_list_v.push_back(line);
+
+    if(has_headlines(line) && (!(check_if_up_space(line)) &&(line.find('\'') == string::npos) && (line.find(';') != string::npos)))
+       /* {if (!(check_if_up_space(line))  //check if all ar uppercase or space and discard if true
+         { if (line.find(';') != string::npos)
+                /* word_list_v.push_back(line);
+            else  */
+                separate_words(line, word_list_v);
 }
 
 
@@ -131,5 +152,9 @@ int main() {
 		// chamar funcao que faz istoo ...... (APAGAR)
 
 	cout << "End of processing." << endl;
-
+    int i= 0;
+	while(i<word_list_v.size())
+    {cout << word_list_v[i] << endl;
+	    i++;
+    }
 	return 0;}
