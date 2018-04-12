@@ -10,13 +10,81 @@
 
 using namespace std;
 
+void uppercase_letters(string &word)
+{
+	// Will make the entire string in uppercase
+
+	transform(word.begin(), word.end(), word.begin(), toupper);
+}
+
+void find_word(vector <string> v1)
+{
+	string insert_word;
+	cin >> insert_word;
+
+	uppercase_letters(insert_word);
+
+	if (binary_search(v1.begin(), v1.end(), insert_word)) // receives an ordered vector and searches for the given word
+	{
+		cout << "The word is found in the dictionary " << endl;
+	}
+	else
+	{
+		cout << "The word is not found in the dictionary " << endl;
+	}
+}  //Option 1
+
+void word_guess(vector <string> v1)
+{
+	// Choose a random word and show
+	srand(time(0));
+	int indicewordrandom = rand() % v1.size();
+	string wordrandom = v1.at(indicewordrandom);
+
+	cout << "A random word from the dictionary was chosen " << endl;
+
+	string shuffledword;
+
+	shuffledword = wordrandom;
+	random_shuffle(shuffledword.begin(), shuffledword.end()); // Shuffle one word letters
+
+	cout << "Shuffling the letters: " << shuffledword << endl;
+
+	cout << "Guess the word! " << endl;
+	string userword;
+
+
+	for (int i = 1; i <= 3; i++) // The user has three attempts
+	{
+		cin >> userword; // the user enters the word
+		uppercase_letters(userword); // Make the letters capital
+
+		if (userword == wordrandom) // Hit the word
+		{
+			cout << "Congratulations, that's the word " << endl;
+			break;
+		}
+		else
+		{
+
+			if (i >= 3)
+			{
+				cout << "Wrong! Try the next! " << endl;
+			}
+			else {
+				cout << "Wrong! Try again " << endl;
+				cout << "You have " << 3 - i << " attemps" << endl;
+			}
+		}
+	}
+} //Option2
+
 
 int main()
 {
 	int option;
 
 	ifstream arq("procdic");
-
 
 
 	cout << "Choose one of the following options: " << endl; // Shows on the screen the available options
