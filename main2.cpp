@@ -292,6 +292,79 @@ void randomletters(vector <string> v1)
 
 } //Option4
 
+bool wildcardMatch(const char *str, const char *strWild)
+{
+	// We have a special case where string is empty ("") and the mask is "*".
+	// We need to handle this too. So we can't test on !*str here.
+	// The loop breaks when the match string is exhausted.
+	while (*strWild)
+	{
+		// Single wildcard character
+		if (*strWild== '?')
+		{
+			// Matches any character except empty string
+			if (!*str)
+				return false;
+			// OK next
+			++str;
+			++strWild;
+		}
+		else if (*strWild== '*')
+		{
+			// Need to do some tricks.
+			// 1. The wildcard * is ignored.
+			// So just an empty string matches. This is done by recursion.
+			// Because we eat one character from the match string,
+			// the recursion will stop.
+			if (wildcardMatch(str,strWild+1))
+				// we have a match and the * replaces no other character
+				return true;
+			// 2. Chance we eat the next character and try it again,
+			// with a wildcard * match. This is done by recursion.
+			// Because we eat one character from the string,
+			// the recursion will stop.
+			if (*str && wildcardMatch(str+1,strWild))
+				return true;
+			// Nothing worked with this wildcard.
+			return false;
+		}
+		else
+		{
+			// Standard compare of 2 chars. Note that *str might be 0 here,
+			// but then we never get a match on *strWild
+			// that has always a value while inside this loop.
+			if (toupper(*str++)!=toupper(*strWild++))
+				return false;
+		}
+	}
+	// Have a match? Only if both are at the end...
+	return !*str && !*strWild;
+}
+
+void option5(vector<string> words, int size)
+{ string wild;
+		vector<string> possible_words;
+		cout << "Word?: ";
+		cin >> wild;
+		int i=0;
+		while(i< size)
+		{if (wildcardMatch ((words.at(i)).c_str(), wild.c_str()))
+			{possible_words.push_back(words[i]);
+				i++;}
+			else
+				i++;}
+		
+		if (possible_words.size()==0)
+			cout << "There are no matches.\n";
+		else
+		{   int a=0;
+			cout<< "Match with: "<<endl;
+			while(a< possible_words.size())
+			{cout<<possible_words.at(a)<< endl;
+				a++;}
+			
+		}}
+	
 // ---------------  MENU -------------------------- //
 
 void menu(vector <string> vectorwords) // The user enters an option
@@ -321,12 +394,11 @@ void menu(vector <string> vectorwords) // The user enters an option
 		break;
 	case 5:
 		cout << " ---- OPTION 5 ---- " << endl;
-		cout << "Option unavailable" << endl;
+		option5(vectorwords, vectorwords.size());
 		break;
 	case 6:
 		cout << " End of program " << endl;
 		exit(1);
-		break;
 	default:
 		cout << "Option is invalid" << endl;
 	}
