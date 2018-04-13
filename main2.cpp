@@ -24,6 +24,8 @@ void searchwords(vector <string> v1);
 void randomletters(vector <string> v1);
 void menu(vector <string> vectorwords);
 void usercontinue(vector <string> v1);
+bool wildcardMatch(const char *str, const char *strWild);
+void option5(vector<string> words, int size);
 
 // ------------------------------------------------- //
 
