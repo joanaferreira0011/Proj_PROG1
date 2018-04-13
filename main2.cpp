@@ -11,7 +11,7 @@
 
 using namespace std;
 
-// -------------- Function prototypes -------------- //
+// -------------- Function prototypes -------------- // 
 
 vector<string> getwords(string file_name);
 void uppercase_letters(string &word);

@@ -96,7 +96,11 @@ void extract(const string &dictionary_file_name, vector<string> &word_list_v) {
 	
 	// Open the file; exit program if the file couldn't be opened
 	// dictionary.open(dictionary_file_name);
-	if (!dictionary.is_open()) { cerr << "File " << "dictionary" << " not found !\n"; exit(1); }
+	if (!dictionary.is_open()) 
+	{ 
+		cerr << "File " << "dictionary" << " not found !\n";
+		exit(1);
+	}
 	
 	while (!dictionary.eof()) {
 		getline(dictionary, line);
