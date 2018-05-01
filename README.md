@@ -1,2 +1,2 @@
 # Proj_PROG1
-Project for Programming Class
+Text processing program: project for Programming Class
